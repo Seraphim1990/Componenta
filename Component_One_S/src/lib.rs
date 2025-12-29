@@ -232,20 +232,3 @@ impl MyAddIn {
         }
     }
 }
-
-
-
-Проблема. якщо я викликаю
-    fn send_request(&self, message: String, postfix: &str) -> Result<String, ()> {
-        let mut stream = self.init_tcp_stream()?;
-        let mut message = message;
-        message.push_str(postfix);
-
-        if let Err(_) = stream.write_all(message.as_bytes()) {
-            return Err(self.set_err(ErrEn::Other));
-        }
-то після роботи, якщо щось запишу в стрім, то сокет не закривається!
-
-fn send_request(&self, message: String, postfix: &str) -> Result<String, ()> {
-        let mut stream = self.init_tcp_stream()?;
-        return Ok("sdfsdfsdfsdfs".to_string());
